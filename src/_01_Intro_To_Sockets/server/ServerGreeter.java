@@ -15,7 +15,6 @@ ServerSocket ss;
 		ss = new ServerSocket(8080);
 		//*OPTIONAL* you can set a time limit for the server to wait by using the 
 		//  ServerSocket's setSoTimeout(int timeInMilliSeconds) method
-		System.out.println(ss.getInetAddress());
 	}
 
 	public void run() {
@@ -27,19 +26,19 @@ ServerSocket ss;
 			//   Put steps 8 - 15 in the try block.
 				try {
 				//8. Let the user know that the server is waiting for a client to connect.
-					JOptionPane.showMessageDialog(null, "*robotic voice*\nWaiting for client to connect");
+					System.out.println("*robotic voice*\nWaiting for client to connect");
 				//9. Create an object of the Socket class and initialize it to serverSocket.accept();
 				//   Change serverSocket to match the ServerSocket member variable you created in step 1.
 				//   The program will wait here until either a client connects or the timeout expires.
 					Socket sc= ss.accept();
 				//10. Let the user know that the client has connected.
-					JOptionPane.showMessageDialog(null, "The client has connected");
+					System.out.println("The client has connected");
 				//11. Create a DataInputStream object. When initializing it, use the Socket object you created in step 9 to call the getInputStream() method.
-					DataInputStream dis = (DataInputStream) sc.getInputStream();
+					DataInputStream dis = new DataInputStream(sc.getInputStream());
 				//12. Print the message from the DataInputStream object using the readUTF() method
-					JOptionPane.showMessageDialog(null, dis.readUTF());
+					System.out.println(dis.readUTF());
 				//13. Create a DataOutputStream object. When initializing it, use the Server object you created in step 9 to call the getOutputStream() method.
-					DataOutputStream dos = (DataOutputStream) sc.getOutputStream();
+					DataOutputStream dos = new DataOutputStream(sc.getOutputStream());
 				//14. Use the DataOutputStream object to send a message to the client using the writeUTF(String message) method.
 				dos.writeUTF("Hello");
 				//15. Close the client server

@@ -15,7 +15,7 @@ ServerSocket ss;
 		ss = new ServerSocket(8080);
 		//*OPTIONAL* you can set a time limit for the server to wait by using the 
 		//  ServerSocket's setSoTimeout(int timeInMilliSeconds) method
-		
+		System.out.println(ss.getInetAddress());
 	}
 
 	public void run() {
@@ -37,7 +37,7 @@ ServerSocket ss;
 				//11. Create a DataInputStream object. When initializing it, use the Socket object you created in step 9 to call the getInputStream() method.
 					DataInputStream dis = (DataInputStream) sc.getInputStream();
 				//12. Print the message from the DataInputStream object using the readUTF() method
-					dis.readUTF();
+					JOptionPane.showMessageDialog(null, dis.readUTF());
 				//13. Create a DataOutputStream object. When initializing it, use the Server object you created in step 9 to call the getOutputStream() method.
 					DataOutputStream dos = (DataOutputStream) sc.getOutputStream();
 				//14. Use the DataOutputStream object to send a message to the client using the writeUTF(String message) method.
@@ -64,13 +64,14 @@ ServerSocket ss;
 
 	public static void main(String[] args) {
 		//16. In a new thread, create an object of the ServerGreeter class and start the thread. Don't forget the try-catch.
-		Thread i;
-		try {
-			i = new Thread(new ServerGreeter());
-			i.start();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		Thread i = new Thread(()-> {
+			try {
+				ServerGreeter sg = new ServerGreeter();
+				sg.run();
+			} catch(IOException e1){
+				e1.printStackTrace();
+			}
+		});
+		i.start();
 	}
 }

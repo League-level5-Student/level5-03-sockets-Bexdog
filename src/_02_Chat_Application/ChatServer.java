@@ -26,7 +26,7 @@ public class ChatServer {
 			//*OPTIONAL* you can set a time limit for the server to wait by using the 
 			//  ServerSocket's setSoTimeout(int timeInMilliSeconds) method
 		}
-
+//Ok this is fine
 		public void run() throws IOException {
 			//3. Create a boolean variable and initialize it to true.
 			boolean b = true;

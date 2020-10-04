@@ -25,7 +25,6 @@ public class ChatClient {
 			String output = JOptionPane.showInputDialog("Message:");
 	        DOS.writeUTF(output);
 	         JOptionPane.showMessageDialog(null, "Server: "+DIS.readUTF());
-	         s.close();
 	      }catch (IOException e) {
 	  		e.printStackTrace();
 	  		i = false;
